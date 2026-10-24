@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        url: "https://cardzmarketcap.com/data"
+      }
+      description: "Public read-only JSON API of CardZ Marketcap, a PSA 10 market cap index of Pokémon and One Piece trading cards (market cap = verified PSA 10 population x PSA 10 reference price, all in USD), rebuilt once a day. No key; CORS open; responses edge-cached ~5 minutes. Fair use: cache responses and do not poll faster than the daily snapshot; excessive traffic may be rate limited. Licence: CC BY 4.0 with attribution to CardZ Marketcap, a link, and the effectiveAt date. Knowledge source: https://cardzmarketcap.com/data, the field dictionary in https://cardzmarketcap.com/llms-full.txt, and the JSON-LD on the data page (which names /search and /resolve), with every endpoint probed live on 2026-10-23. Observed but not documented: market cards also carry rank, previousMarketRank, printingIdentity, image, salesSparkline and per-window trackedSalesChangePct; historyDaily/historyReference are empty arrays in /market and filled in /cards/{id}, which also adds story and priceUngradedReference; search takes kind, tcg and limit filters. Unverified: the pageSize and limit maxima; whether /resolve honours kind/tcg; the full value sets of status, coverage and match."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://cardzmarketcap.com/api/v1"
+        }
+      ]
+      summary: "Public read-only JSON API of CardZ Marketcap, a PSA 10 market cap index of Pokémon and One Piece trading cards (market cap = verified PSA 10 population x PSA 10 reference price, all in USD), rebuilt once a day."
+      title: "CardZ Marketcap API"
+      version: "1.0.0"
+      website: "https://cardzmarketcap.com"
+    }
+  }
+}
+

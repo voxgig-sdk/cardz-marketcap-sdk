@@ -1,0 +1,2273 @@
+{
+  "def": "cardz-marketcap_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "card": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "cardLanguage": {
+              "a": true,
+              "h": "Card Language",
+              "n": "cardLanguage",
+              "r": true,
+              "sh": "Printing language: en, ja, ko, zhCN or zhTW.",
+              "t": "`$STRING`"
+            },
+            "collectorNumber": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collectorNumber",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "historyDaily": {
+              "a": true,
+              "h": "History Daily",
+              "n": "historyDaily",
+              "r": true,
+              "sh": "Daily history.",
+              "t": "`$ARRAY`"
+            },
+            "historyReference": {
+              "a": true,
+              "h": "History Reference",
+              "n": "historyReference",
+              "r": true,
+              "sh": "Longer reference history.",
+              "t": "`$ARRAY`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Stable public card id (also the /card/{id} page segment).",
+              "t": "`$STRING`"
+            },
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "marketCap": {
+              "a": true,
+              "h": "Market Cap",
+              "n": "marketCap",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "marketRank": {
+              "a": true,
+              "h": "Market Rank",
+              "n": "marketRank",
+              "r": true,
+              "sh": "Rank by market cap across the whole index.",
+              "t": "`$INTEGER`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "officialName": {
+              "a": true,
+              "h": "Official Name",
+              "n": "officialName",
+              "r": true,
+              "sh": "Canonical printing name.",
+              "t": "`$STRING`"
+            },
+            "populationPsa10": {
+              "a": true,
+              "h": "Population Psa10",
+              "n": "populationPsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "previousMarketRank": {
+              "a": true,
+              "h": "Previous Market Rank",
+              "n": "previousMarketRank",
+              "r": false,
+              "sh": "Market rank in the previous snapshot.",
+              "t": "`$INTEGER`"
+            },
+            "pricePsa10": {
+              "a": true,
+              "h": "Price Psa10",
+              "n": "pricePsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "priceUngradedReference": {
+              "a": true,
+              "h": "Price Ungraded Reference",
+              "n": "priceUngradedReference",
+              "r": false,
+              "sh": "Card detail only: ungraded reference price.",
+              "t": "`$ANY`"
+            },
+            "printingIdentity": {
+              "a": true,
+              "h": "Printing Identity",
+              "n": "printingIdentity",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "rank": {
+              "a": true,
+              "h": "Rank",
+              "n": "rank",
+              "r": true,
+              "sh": "Position in this response's ordering.",
+              "t": "`$INTEGER`"
+            },
+            "salesSparkline": {
+              "a": true,
+              "h": "Sales Sparkline",
+              "n": "salesSparkline",
+              "r": true,
+              "sh": "Recent daily tracked-sales values for a sparkline.",
+              "t": "`$ARRAY`"
+            },
+            "setName": {
+              "a": true,
+              "h": "Set Name",
+              "n": "setName",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "story": {
+              "a": true,
+              "h": "Story",
+              "n": "story",
+              "r": true,
+              "sh": "Card detail only: editorial story text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "tcg": {
+              "a": true,
+              "h": "Tcg",
+              "n": "tcg",
+              "r": true,
+              "sh": "\"Pokémon\" or \"One Piece\".",
+              "t": "`$STRING`"
+            },
+            "viewRank": {
+              "a": true,
+              "h": "View Rank",
+              "n": "viewRank",
+              "r": true,
+              "sh": "Rank inside the requested scope.",
+              "t": "`$INTEGER`"
+            },
+            "windows": {
+              "a": true,
+              "h": "Windows",
+              "n": "windows",
+              "r": true,
+              "sh": "Change figures keyed by window: 1d, 7d, 30d, 90d, 180d, 365d.",
+              "t": "`$OBJECT`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "card",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "ex": "cmc_fc229f7ae1b256b2119fa79b",
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "cards"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "market": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "cardLanguage": {
+              "a": true,
+              "h": "Card Language",
+              "n": "cardLanguage",
+              "r": true,
+              "sh": "Printing language: en, ja, ko, zhCN or zhTW.",
+              "t": "`$STRING`"
+            },
+            "collectorNumber": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collectorNumber",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "historyDaily": {
+              "a": true,
+              "h": "History Daily",
+              "n": "historyDaily",
+              "r": true,
+              "sh": "Daily history.",
+              "t": "`$ARRAY`"
+            },
+            "historyReference": {
+              "a": true,
+              "h": "History Reference",
+              "n": "historyReference",
+              "r": true,
+              "sh": "Longer reference history.",
+              "t": "`$ARRAY`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Stable public card id (also the /card/{id} page segment).",
+              "t": "`$STRING`"
+            },
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "marketCap": {
+              "a": true,
+              "h": "Market Cap",
+              "n": "marketCap",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "marketRank": {
+              "a": true,
+              "h": "Market Rank",
+              "n": "marketRank",
+              "r": true,
+              "sh": "Rank by market cap across the whole index.",
+              "t": "`$INTEGER`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "officialName": {
+              "a": true,
+              "h": "Official Name",
+              "n": "officialName",
+              "r": true,
+              "sh": "Canonical printing name.",
+              "t": "`$STRING`"
+            },
+            "populationPsa10": {
+              "a": true,
+              "h": "Population Psa10",
+              "n": "populationPsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "previousMarketRank": {
+              "a": true,
+              "h": "Previous Market Rank",
+              "n": "previousMarketRank",
+              "r": false,
+              "sh": "Market rank in the previous snapshot.",
+              "t": "`$INTEGER`"
+            },
+            "pricePsa10": {
+              "a": true,
+              "h": "Price Psa10",
+              "n": "pricePsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "priceUngradedReference": {
+              "a": true,
+              "h": "Price Ungraded Reference",
+              "n": "priceUngradedReference",
+              "r": false,
+              "sh": "Card detail only: ungraded reference price.",
+              "t": "`$ANY`"
+            },
+            "printingIdentity": {
+              "a": true,
+              "h": "Printing Identity",
+              "n": "printingIdentity",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "rank": {
+              "a": true,
+              "h": "Rank",
+              "n": "rank",
+              "r": true,
+              "sh": "Position in this response's ordering.",
+              "t": "`$INTEGER`"
+            },
+            "salesSparkline": {
+              "a": true,
+              "h": "Sales Sparkline",
+              "n": "salesSparkline",
+              "r": true,
+              "sh": "Recent daily tracked-sales values for a sparkline.",
+              "t": "`$ARRAY`"
+            },
+            "setName": {
+              "a": true,
+              "h": "Set Name",
+              "n": "setName",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "story": {
+              "a": true,
+              "h": "Story",
+              "n": "story",
+              "r": true,
+              "sh": "Card detail only: editorial story text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "tcg": {
+              "a": true,
+              "h": "Tcg",
+              "n": "tcg",
+              "r": true,
+              "sh": "\"Pokémon\" or \"One Piece\".",
+              "t": "`$STRING`"
+            },
+            "viewRank": {
+              "a": true,
+              "h": "View Rank",
+              "n": "viewRank",
+              "r": true,
+              "sh": "Rank inside the requested scope.",
+              "t": "`$INTEGER`"
+            },
+            "windows": {
+              "a": true,
+              "h": "Windows",
+              "n": "windows",
+              "r": true,
+              "sh": "Change figures keyed by window: 1d, 7d, 30d, 90d, 180d, 365d.",
+              "t": "`$OBJECT`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "market",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /market",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 5,
+                        "k": "query",
+                        "n": "page_size",
+                        "or": "pageSize",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "pokemon",
+                        "k": "query",
+                        "n": "scope",
+                        "or": "scope",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/market",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "market"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "resolution": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "aliases": {
+              "a": true,
+              "h": "Aliases",
+              "n": "aliases",
+              "r": false,
+              "sh": "Known nicknames (present on some cards).",
+              "t": "`$ARRAY`"
+            },
+            "cardLanguage": {
+              "a": true,
+              "h": "Card Language",
+              "n": "cardLanguage",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "collectorNumber": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collectorNumber",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "href": {
+              "a": true,
+              "h": "Href",
+              "n": "href",
+              "r": true,
+              "sh": "Site-relative page path.",
+              "t": "`$STRING`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Card id (cmc_...) or box id.",
+              "t": "`$STRING`"
+            },
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "kind": {
+              "a": true,
+              "h": "Kind",
+              "n": "kind",
+              "r": true,
+              "sh": "\"card\" or \"box\".",
+              "t": "`$STRING`"
+            },
+            "marketCap": {
+              "a": true,
+              "h": "Market Cap",
+              "n": "marketCap",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "marketRank": {
+              "a": true,
+              "h": "Market Rank",
+              "n": "marketRank",
+              "r": true,
+              "t": "`$INTEGER`"
+            },
+            "match": {
+              "a": true,
+              "h": "Match",
+              "n": "match",
+              "r": true,
+              "sh": "How the query matched, e.g.",
+              "t": "`$STRING`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "officialName": {
+              "a": true,
+              "h": "Official Name",
+              "n": "officialName",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "populationPsa10": {
+              "a": true,
+              "h": "Population Psa10",
+              "n": "populationPsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "pricePsa10": {
+              "a": true,
+              "h": "Price Psa10",
+              "n": "pricePsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "setCode": {
+              "a": true,
+              "h": "Set Code",
+              "n": "setCode",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "setName": {
+              "a": true,
+              "h": "Set Name",
+              "n": "setName",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "tcg": {
+              "a": true,
+              "h": "Tcg",
+              "n": "tcg",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": true,
+              "sh": "Absolute page URL.",
+              "t": "`$STRING`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "resolution",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /resolve",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "lang",
+                        "or": "lang",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "085/SVP",
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/resolve",
+                  "q": {
+                    "exist": [
+                      "q"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "resolve"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "search": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "aliases": {
+              "a": true,
+              "h": "Aliases",
+              "n": "aliases",
+              "r": false,
+              "sh": "Known nicknames (present on some cards).",
+              "t": "`$ARRAY`"
+            },
+            "cardLanguage": {
+              "a": true,
+              "h": "Card Language",
+              "n": "cardLanguage",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "collectorNumber": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collectorNumber",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "href": {
+              "a": true,
+              "h": "Href",
+              "n": "href",
+              "r": true,
+              "sh": "Site-relative page path.",
+              "t": "`$STRING`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Card id (cmc_...) or box id.",
+              "t": "`$STRING`"
+            },
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": true,
+              "t": "`$OBJECT`"
+            },
+            "kind": {
+              "a": true,
+              "h": "Kind",
+              "n": "kind",
+              "r": true,
+              "sh": "\"card\" or \"box\".",
+              "t": "`$STRING`"
+            },
+            "marketCap": {
+              "a": true,
+              "h": "Market Cap",
+              "n": "marketCap",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "marketRank": {
+              "a": true,
+              "h": "Market Rank",
+              "n": "marketRank",
+              "r": true,
+              "t": "`$INTEGER`"
+            },
+            "match": {
+              "a": true,
+              "h": "Match",
+              "n": "match",
+              "r": true,
+              "sh": "How the query matched, e.g.",
+              "t": "`$STRING`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "officialName": {
+              "a": true,
+              "h": "Official Name",
+              "n": "officialName",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "populationPsa10": {
+              "a": true,
+              "h": "Population Psa10",
+              "n": "populationPsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "pricePsa10": {
+              "a": true,
+              "h": "Price Psa10",
+              "n": "pricePsa10",
+              "r": true,
+              "sh": "A published figure with its status and date.",
+              "t": "`$OBJECT`"
+            },
+            "setCode": {
+              "a": true,
+              "h": "Set Code",
+              "n": "setCode",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "setName": {
+              "a": true,
+              "h": "Set Name",
+              "n": "setName",
+              "r": true,
+              "sh": "Text keyed by language code.",
+              "t": "`$OBJECT`"
+            },
+            "tcg": {
+              "a": true,
+              "h": "Tcg",
+              "n": "tcg",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": true,
+              "sh": "Absolute page URL.",
+              "t": "`$STRING`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "search",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "kind",
+                        "or": "kind",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "en",
+                        "k": "query",
+                        "n": "lang",
+                        "or": "lang",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 3,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "pikachu",
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "one-piece",
+                        "k": "query",
+                        "n": "tcg",
+                        "or": "tcg",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/search",
+                  "q": {
+                    "exist": [
+                      "q"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "search"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Client-side rate limiting via a token bucket",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Rate limiting",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Automatic retry of transient failures with exponential backoff",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Retry",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "description": "In-memory mock transport for testing without a live server",
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Test transport",
+          "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Per-request timeout with transport abort",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Timeout",
+          "transport": "wrap",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicCardFlow": {
+          "active": true,
+          "entity": "card",
+          "key$": "BasicCardFlow",
+          "kind": "basic",
+          "name": "BasicCardFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "card_ref01",
+                "srcdatavar": "card_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {
+                "id": "card01"
+              },
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-card_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicMarketFlow": {
+          "active": true,
+          "entity": "market",
+          "key$": "BasicMarketFlow",
+          "kind": "basic",
+          "name": "BasicMarketFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "market_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicResolutionFlow": {
+          "active": true,
+          "entity": "resolution",
+          "key$": "BasicResolutionFlow",
+          "kind": "basic",
+          "name": "BasicResolutionFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "resolution_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicSearchFlow": {
+          "active": true,
+          "entity": "search",
+          "key$": "BasicSearchFlow",
+          "kind": "basic",
+          "name": "BasicSearchFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "search_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "url": "https://cardzmarketcap.com/data"
+        },
+        "description": "Public read-only JSON API of CardZ Marketcap, a PSA 10 market cap index of Pokémon and One Piece trading cards (market cap = verified PSA 10 population x PSA 10 reference price, all in USD), rebuilt once a day. No key; CORS open; responses edge-cached ~5 minutes. Fair use: cache responses and do not poll faster than the daily snapshot; excessive traffic may be rate limited. Licence: CC BY 4.0 with attribution to CardZ Marketcap, a link, and the effectiveAt date. Knowledge source: https://cardzmarketcap.com/data, the field dictionary in https://cardzmarketcap.com/llms-full.txt, and the JSON-LD on the data page (which names /search and /resolve), with every endpoint probed live on 2026-10-23. Observed but not documented: market cards also carry rank, previousMarketRank, printingIdentity, image, salesSparkline and per-window trackedSalesChangePct; historyDaily/historyReference are empty arrays in /market and filled in /cards/{id}, which also adds story and priceUngradedReference; search takes kind, tcg and limit filters. Unverified: the pageSize and limit maxima; whether /resolve honours kind/tcg; the full value sets of status, coverage and match.",
+        "meta_source": "https://www.freepublicapis.com",
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://cardzmarketcap.com/api/v1"
+          }
+        ],
+        "summary": "Public read-only JSON API of CardZ Marketcap, a PSA 10 market cap index of Pokémon and One Piece trading cards (market cap = verified PSA 10 population x PSA 10 reference price, all in USD), rebuilt once a day.",
+        "title": "CardZ Marketcap API",
+        "version": "1.0.0",
+        "website": "https://cardzmarketcap.com"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "phase": {
+        "build": {
+          "active": true
+        },
+        "top": {
+          "active": true
+        }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "go": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "go",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-cli",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-mcp",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
+        },
+        "lua": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "lua",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "php",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "py",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "*"
+            }
+          },
+          "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "rb",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "cardz-marketcap",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
+      }
+    }
+  },
+  "name": "cardz-marketcap",
+  "origin": "voxgig-sdk"
+}

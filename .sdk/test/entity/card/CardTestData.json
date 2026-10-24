@@ -1,0 +1,112 @@
+{
+  "existing": {
+    "card": {
+      "CARD00": {
+        "cardLanguage": "sdc",
+        "collectorNumber": "sdd",
+        "historyDaily": [],
+        "historyReference": [],
+        "id": "CARD00",
+        "image": {},
+        "marketCap": {},
+        "marketRank": 227,
+        "name": {},
+        "officialName": "se5",
+        "populationPsa10": {},
+        "previousMarketRank": 231,
+        "pricePsa10": {},
+        "priceUngradedReference": "se9",
+        "printingIdentity": {},
+        "rank": 235,
+        "salesSparkline": [],
+        "setName": {},
+        "story": {},
+        "tcg": "sef",
+        "viewRank": 240,
+        "windows": {}
+      },
+      "CARD01": {
+        "cardLanguage": "s1b8",
+        "collectorNumber": "s1b9",
+        "historyDaily": [],
+        "historyReference": [],
+        "id": "CARD01",
+        "image": {},
+        "marketCap": {},
+        "marketRank": 447,
+        "name": {},
+        "officialName": "s1c1",
+        "populationPsa10": {},
+        "previousMarketRank": 451,
+        "pricePsa10": {},
+        "priceUngradedReference": "s1c5",
+        "printingIdentity": {},
+        "rank": 455,
+        "salesSparkline": [],
+        "setName": {},
+        "story": {},
+        "tcg": "s1cb",
+        "viewRank": 460,
+        "windows": {}
+      },
+      "CARD02": {
+        "cardLanguage": "s294",
+        "collectorNumber": "s295",
+        "historyDaily": [],
+        "historyReference": [],
+        "id": "CARD02",
+        "image": {},
+        "marketCap": {},
+        "marketRank": 667,
+        "name": {},
+        "officialName": "s29d",
+        "populationPsa10": {},
+        "previousMarketRank": 671,
+        "pricePsa10": {},
+        "priceUngradedReference": "s2a1",
+        "printingIdentity": {},
+        "rank": 675,
+        "salesSparkline": [],
+        "setName": {},
+        "story": {},
+        "tcg": "s2a7",
+        "viewRank": 680,
+        "windows": {}
+      }
+    }
+  },
+  "new": {
+    "card": {
+      "card_ref01": {
+        "cardLanguage": "s370",
+        "collectorNumber": "s371",
+        "historyDaily": [],
+        "historyReference": [],
+        "image": {},
+        "marketCap": {},
+        "marketRank": 887,
+        "name": {},
+        "officialName": "s379",
+        "populationPsa10": {},
+        "previousMarketRank": 891,
+        "pricePsa10": {},
+        "priceUngradedReference": "s37d",
+        "printingIdentity": {},
+        "rank": 895,
+        "salesSparkline": [],
+        "setName": {},
+        "story": {},
+        "tcg": "s383",
+        "viewRank": 900,
+        "windows": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /cards/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

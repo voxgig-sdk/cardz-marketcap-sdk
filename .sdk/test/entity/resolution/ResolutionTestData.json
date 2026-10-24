@@ -1,0 +1,96 @@
+{
+  "existing": {
+    "resolution": {
+      "RESOLUTION00": {
+        "aliases": [],
+        "cardLanguage": "sb5",
+        "collectorNumber": "sb6",
+        "href": "sb7",
+        "id": "RESOLUTION00",
+        "image": {},
+        "kind": "sba",
+        "marketCap": {},
+        "marketRank": 188,
+        "match": "sbd",
+        "name": {},
+        "officialName": "sbf",
+        "populationPsa10": {},
+        "pricePsa10": {},
+        "setCode": "sc2",
+        "setName": {},
+        "tcg": "sc4",
+        "url": "sc5"
+      },
+      "RESOLUTION01": {
+        "aliases": [],
+        "cardLanguage": "s169",
+        "collectorNumber": "s16a",
+        "href": "s16b",
+        "id": "RESOLUTION01",
+        "image": {},
+        "kind": "s16e",
+        "marketCap": {},
+        "marketRank": 368,
+        "match": "s171",
+        "name": {},
+        "officialName": "s173",
+        "populationPsa10": {},
+        "pricePsa10": {},
+        "setCode": "s176",
+        "setName": {},
+        "tcg": "s178",
+        "url": "s179"
+      },
+      "RESOLUTION02": {
+        "aliases": [],
+        "cardLanguage": "s21d",
+        "collectorNumber": "s21e",
+        "href": "s21f",
+        "id": "RESOLUTION02",
+        "image": {},
+        "kind": "s222",
+        "marketCap": {},
+        "marketRank": 548,
+        "match": "s225",
+        "name": {},
+        "officialName": "s227",
+        "populationPsa10": {},
+        "pricePsa10": {},
+        "setCode": "s22a",
+        "setName": {},
+        "tcg": "s22c",
+        "url": "s22d"
+      }
+    }
+  },
+  "new": {
+    "resolution": {
+      "resolution_ref01": {
+        "aliases": [],
+        "cardLanguage": "s2d1",
+        "collectorNumber": "s2d2",
+        "href": "s2d3",
+        "image": {},
+        "kind": "s2d6",
+        "marketCap": {},
+        "marketRank": 728,
+        "match": "s2d9",
+        "name": {},
+        "officialName": "s2db",
+        "populationPsa10": {},
+        "pricePsa10": {},
+        "setCode": "s2de",
+        "setName": {},
+        "tcg": "s2e0",
+        "url": "s2e1"
+      }
+    }
+  },
+  "requests": {
+    "GET /resolve": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicMarketFlow
+
+main: kit: flow: BasicMarketFlow:
+{
+  entity: "market",
+  kind: "basic",
+  name: "BasicMarketFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "market_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMarketFlow"
+}

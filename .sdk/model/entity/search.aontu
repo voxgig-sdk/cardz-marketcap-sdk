@@ -1,0 +1,215 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    aliases: {
+      h: "Aliases"
+      n: "aliases"
+      r: false
+      sh: "Known nicknames (present on some cards)."
+      t: "`$ARRAY`"
+    }
+    cardLanguage: {
+      h: "Card Language"
+      n: "cardLanguage"
+      r: true
+      t: "`$STRING`"
+    }
+    collectorNumber: {
+      h: "Collector Number"
+      n: "collectorNumber"
+      r: true
+      t: "`$STRING`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      sh: "Site-relative page path."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Card id (cmc_...) or box id."
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: true
+      t: "`$OBJECT`"
+    }
+    kind: {
+      h: "Kind"
+      n: "kind"
+      r: true
+      sh: "\"card\" or \"box\"."
+      t: "`$STRING`"
+    }
+    marketCap: {
+      h: "Market Cap"
+      n: "marketCap"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    marketRank: {
+      h: "Market Rank"
+      n: "marketRank"
+      r: true
+      t: "`$INTEGER`"
+    }
+    match: {
+      h: "Match"
+      n: "match"
+      r: true
+      sh: "How the query matched, e.g."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Text keyed by language code."
+      t: "`$OBJECT`"
+    }
+    officialName: {
+      h: "Official Name"
+      n: "officialName"
+      r: true
+      t: "`$STRING`"
+    }
+    populationPsa10: {
+      h: "Population Psa10"
+      n: "populationPsa10"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    pricePsa10: {
+      h: "Price Psa10"
+      n: "pricePsa10"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    setCode: {
+      h: "Set Code"
+      n: "setCode"
+      r: true
+      t: "`$STRING`"
+    }
+    setName: {
+      h: "Set Name"
+      n: "setName"
+      r: true
+      sh: "Text keyed by language code."
+      t: "`$OBJECT`"
+    }
+    tcg: {
+      h: "Tcg"
+      n: "tcg"
+      r: true
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: true
+      sh: "Absolute page URL."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "kind"
+                or: "kind"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 3
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "pikachu"
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "one-piece"
+                k: "query"
+                n: "tcg"
+                or: "tcg"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "q"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

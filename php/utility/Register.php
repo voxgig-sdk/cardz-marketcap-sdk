@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+// CardzMarketcap SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+CardzMarketcapUtility::setRegistrar(function (CardzMarketcapUtility $u): void {
+    $u->clean = [CardzMarketcapClean::class, 'call'];
+    $u->clean_add = [CardzMarketcapClean::class, 'add'];
+    $u->clean_explain = [CardzMarketcapDone::class, 'clean_explain'];
+    $u->done = [CardzMarketcapDone::class, 'call'];
+    $u->make_error = [CardzMarketcapMakeError::class, 'call'];
+    $u->feature_add = [CardzMarketcapFeatureAdd::class, 'call'];
+    $u->feature_hook = [CardzMarketcapFeatureHook::class, 'call'];
+    $u->feature_init = [CardzMarketcapFeatureInit::class, 'call'];
+    $u->fetcher = [CardzMarketcapFetcher::class, 'call'];
+    $u->make_fetch_def = [CardzMarketcapMakeFetchDef::class, 'call'];
+    $u->make_context = [CardzMarketcapMakeContext::class, 'call'];
+    $u->make_options = [CardzMarketcapMakeOptions::class, 'call'];
+    $u->make_request = [CardzMarketcapMakeRequest::class, 'call'];
+    $u->make_response = [CardzMarketcapMakeResponse::class, 'call'];
+    $u->make_result = [CardzMarketcapMakeResult::class, 'call'];
+    $u->make_point = [CardzMarketcapMakePoint::class, 'call'];
+    $u->make_spec = [CardzMarketcapMakeSpec::class, 'call'];
+    $u->make_url = [CardzMarketcapMakeUrl::class, 'call'];
+    $u->param = [CardzMarketcapParam::class, 'call'];
+    $u->prepare_auth = [CardzMarketcapPrepareAuth::class, 'call'];
+    $u->prepare_body = [CardzMarketcapPrepareBody::class, 'call'];
+    $u->prepare_headers = [CardzMarketcapPrepareHeaders::class, 'call'];
+    $u->prepare_method = [CardzMarketcapPrepareMethod::class, 'call'];
+    $u->prepare_params = [CardzMarketcapPrepareParams::class, 'call'];
+    $u->prepare_path = [CardzMarketcapPreparePath::class, 'call'];
+    $u->prepare_query = [CardzMarketcapPrepareQuery::class, 'call'];
+    $u->graphql_body = [CardzMarketcapGraphql::class, 'body'];
+    $u->graphql_errors = [CardzMarketcapGraphql::class, 'errors'];
+    $u->result_basic = [CardzMarketcapResultBasic::class, 'call'];
+    $u->result_body = [CardzMarketcapResultBody::class, 'call'];
+    $u->result_headers = [CardzMarketcapResultHeaders::class, 'call'];
+    $u->transform_request = [CardzMarketcapTransformRequest::class, 'call'];
+    $u->transform_response = [CardzMarketcapTransformResponse::class, 'call'];
+});

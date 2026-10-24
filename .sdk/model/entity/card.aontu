@@ -1,0 +1,219 @@
+# Entity: card
+
+main: kit: entity: card: {
+
+  alias: field: {}
+
+  fields: {
+    cardLanguage: {
+      h: "Card Language"
+      n: "cardLanguage"
+      r: true
+      sh: "Printing language: en, ja, ko, zhCN or zhTW."
+      t: "`$STRING`"
+    }
+    collectorNumber: {
+      h: "Collector Number"
+      n: "collectorNumber"
+      r: true
+      t: "`$STRING`"
+    }
+    historyDaily: {
+      h: "History Daily"
+      n: "historyDaily"
+      r: true
+      sh: "Daily history."
+      t: "`$ARRAY`"
+    }
+    historyReference: {
+      h: "History Reference"
+      n: "historyReference"
+      r: true
+      sh: "Longer reference history."
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Stable public card id (also the /card/{id} page segment)."
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: true
+      t: "`$OBJECT`"
+    }
+    marketCap: {
+      h: "Market Cap"
+      n: "marketCap"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    marketRank: {
+      h: "Market Rank"
+      n: "marketRank"
+      r: true
+      sh: "Rank by market cap across the whole index."
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Text keyed by language code."
+      t: "`$OBJECT`"
+    }
+    officialName: {
+      h: "Official Name"
+      n: "officialName"
+      r: true
+      sh: "Canonical printing name."
+      t: "`$STRING`"
+    }
+    populationPsa10: {
+      h: "Population Psa10"
+      n: "populationPsa10"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    previousMarketRank: {
+      h: "Previous Market Rank"
+      n: "previousMarketRank"
+      r: false
+      sh: "Market rank in the previous snapshot."
+      t: "`$INTEGER`"
+    }
+    pricePsa10: {
+      h: "Price Psa10"
+      n: "pricePsa10"
+      r: true
+      sh: "A published figure with its status and date."
+      t: "`$OBJECT`"
+    }
+    priceUngradedReference: {
+      h: "Price Ungraded Reference"
+      n: "priceUngradedReference"
+      r: false
+      sh: "Card detail only: ungraded reference price."
+      t: "`$ANY`"
+    }
+    printingIdentity: {
+      h: "Printing Identity"
+      n: "printingIdentity"
+      r: true
+      t: "`$OBJECT`"
+    }
+    rank: {
+      h: "Rank"
+      n: "rank"
+      r: true
+      sh: "Position in this response's ordering."
+      t: "`$INTEGER`"
+    }
+    salesSparkline: {
+      h: "Sales Sparkline"
+      n: "salesSparkline"
+      r: true
+      sh: "Recent daily tracked-sales values for a sparkline."
+      t: "`$ARRAY`"
+    }
+    setName: {
+      h: "Set Name"
+      n: "setName"
+      r: true
+      sh: "Text keyed by language code."
+      t: "`$OBJECT`"
+    }
+    story: {
+      h: "Story"
+      n: "story"
+      r: true
+      sh: "Card detail only: editorial story text keyed by language code."
+      t: "`$OBJECT`"
+    }
+    tcg: {
+      h: "Tcg"
+      n: "tcg"
+      r: true
+      sh: "\"Pokémon\" or \"One Piece\"."
+      t: "`$STRING`"
+    }
+    viewRank: {
+      h: "View Rank"
+      n: "viewRank"
+      r: true
+      sh: "Rank inside the requested scope."
+      t: "`$INTEGER`"
+    }
+    windows: {
+      h: "Windows"
+      n: "windows"
+      r: true
+      sh: "Change figures keyed by window: 1d, 7d, 30d, 90d, 180d, 365d."
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "card"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "cmc_fc229f7ae1b256b2119fa79b"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

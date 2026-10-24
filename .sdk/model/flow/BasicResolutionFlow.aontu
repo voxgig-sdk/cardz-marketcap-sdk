@@ -1,0 +1,22 @@
+# BasicResolutionFlow
+
+main: kit: flow: BasicResolutionFlow:
+{
+  entity: "resolution",
+  kind: "basic",
+  name: "BasicResolutionFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "resolution_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicResolutionFlow"
+}

@@ -1,0 +1,986 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CardZ Marketcap API",
+    "description": "Public read-only JSON API of CardZ Marketcap, a PSA 10 market cap index of Pokémon and One Piece trading cards (market cap = verified PSA 10 population x PSA 10 reference price, all in USD), rebuilt once a day. No key; CORS open; responses edge-cached ~5 minutes. Fair use: cache responses and do not poll faster than the daily snapshot; excessive traffic may be rate limited. Licence: CC BY 4.0 with attribution to CardZ Marketcap, a link, and the effectiveAt date. Knowledge source: https://cardzmarketcap.com/data, the field dictionary in https://cardzmarketcap.com/llms-full.txt, and the JSON-LD on the data page (which names /search and /resolve), with every endpoint probed live on 2026-10-23. Observed but not documented: market cards also carry rank, previousMarketRank, printingIdentity, image, salesSparkline and per-window trackedSalesChangePct; historyDaily/historyReference are empty arrays in /market and filled in /cards/{id}, which also adds story and priceUngradedReference; search takes kind, tcg and limit filters. Unverified: the pageSize and limit maxima; whether /resolve honours kind/tcg; the full value sets of status, coverage and match.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://cardzmarketcap.com/data"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cardzmarketcap.com/api/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/market": {
+      "get": {
+        "summary": "Get a page of the market cap ranking",
+        "description": "A page of the PSA 10 market cap ranking for a scope, wrapped with the snapshot identity. Invalid parameter values return 400 rather than falling back to a default. The full first page (100 cards) is about 0.5 MB.",
+        "operationId": "getMarket",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "query",
+            "required": false,
+            "description": "Which ranking to page through.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "pokemon",
+                "one-piece",
+                "watchlist"
+              ],
+              "default": "all"
+            },
+            "example": "pokemon"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "1-based page number; zero or non-numeric returns 400.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 1
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "description": "Cards per page; clamped to a server maximum (not documented). Default observed: 100.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of ranked cards.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Market"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid scope, page or pageSize.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "summary": "Get one card",
+        "description": "One ranked card by id, with its full daily and reference price history, editorial story and ungraded reference price.",
+        "operationId": "getCard",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Card id from /market or /search.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cmc_fc229f7ae1b256b2119fa79b"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The card.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Card"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The card is not ranked (`{\"error\": \"Card not found\"}`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Search cards and boxes",
+        "description": "Looks up cards (and sealed boxes) by name, nickname or collector number in five languages. Folded substring match, not typo-fuzzy.",
+        "operationId": "searchCards",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Name, nickname or collector number. Missing returns 400.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "pikachu"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language to match names in: en (default), zh-TW, zh-CN, ja, ko.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "zh-TW",
+                "zh-CN",
+                "ja",
+                "ko"
+              ],
+              "default": "en"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "description": "Restrict to card or box hits. Omit for all; anything else returns 400.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "card",
+                "box"
+              ]
+            }
+          },
+          {
+            "name": "tcg",
+            "in": "query",
+            "required": false,
+            "description": "Restrict to one TCG; `one-piece` was probed (echoed as \"One Piece\"). `pokemon` is assumed to work as in /market scope, unverified.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "one-piece"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum hits to return (default observed: 8; maximum not documented).",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search hits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing q or invalid filter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resolve": {
+      "get": {
+        "summary": "Resolve a query to one card",
+        "description": "Returns one hit in `resolved` when the top search hit is uniquely strong; otherwise `resolved` is null, `ambiguous` is true and `hits` holds a short candidate list.",
+        "operationId": "resolveCard",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Name, nickname or collector number.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "085/SVP"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language to match names in: en (default), zh-TW, zh-CN, ja, ko.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "zh-TW",
+                "zh-CN",
+                "ja",
+                "ko"
+              ],
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resolution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resolution"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Generation": {
+        "type": "object",
+        "description": "The dataset build that produced the figures.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Snapshot build id, e.g. \"db3308_a8cad73265fdce2e\"."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "Coverage": {
+        "type": "object",
+        "description": "How complete the snapshot is for the requested scope.",
+        "properties": {
+          "claim": {
+            "type": "string",
+            "description": "Coverage claim (observed \"verified-top-n\")."
+          },
+          "requestedCount": {
+            "type": "integer",
+            "description": "Number of cards in the requested scope."
+          },
+          "verifiedCount": {
+            "type": "integer",
+            "description": "Number of cards verified and returned."
+          }
+        },
+        "required": [
+          "claim",
+          "requestedCount",
+          "verifiedCount"
+        ]
+      },
+      "Metric": {
+        "type": "object",
+        "description": "A published figure with its status and date.",
+        "properties": {
+          "value": {
+            "type": "number",
+            "description": "The figure. null never means zero: it means not published for this window.",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "ready, accumulating, stale or unavailable."
+          },
+          "asOf": {
+            "type": "string",
+            "description": "When the value applies.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sourcePeriodAt": {
+            "type": "string",
+            "description": "Card detail only.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "saleAt": {
+            "type": "string",
+            "description": "Card detail only: date of the sale behind the price.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "checkedAt": {
+            "type": "string",
+            "description": "Card detail only.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sourceSwitched": {
+            "type": "boolean",
+            "description": "Card detail only."
+          }
+        },
+        "required": [
+          "value",
+          "status",
+          "asOf"
+        ]
+      },
+      "TrackedSales": {
+        "type": "object",
+        "description": "Completed sales captured inside tracked coverage for a window.",
+        "properties": {
+          "valueUsd": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "count": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "coverage": {
+            "type": "string",
+            "description": "partial or unavailable (observed)."
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "required": [
+          "valueUsd",
+          "count",
+          "coverage",
+          "asOf"
+        ]
+      },
+      "Window": {
+        "type": "object",
+        "description": "Change figures for one time window. changePct is the reference-price change in percent.",
+        "properties": {
+          "changePct": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "marketCapChangePct": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "trackedSalesChangePct": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "trackedSales": {
+            "$ref": "#/components/schemas/TrackedSales"
+          }
+        },
+        "required": [
+          "changePct",
+          "marketCapChangePct",
+          "trackedSalesChangePct",
+          "trackedSales"
+        ]
+      },
+      "CardImage": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Image path, relative to https://cardzmarketcap.com."
+          },
+          "alt": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Observed \"raw_front\"."
+          },
+          "variants": {
+            "type": "object",
+            "description": "Resized image paths keyed by width in pixels (observed keys \"200\" and \"600\").",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "url",
+          "alt",
+          "kind",
+          "variants",
+          "width",
+          "height"
+        ]
+      },
+      "PrintingIdentity": {
+        "type": "object",
+        "properties": {
+          "setCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "finishCode": {
+            "type": "string",
+            "description": "e.g. foil, unknown.",
+            "nullable": true
+          }
+        },
+        "required": [
+          "setCode",
+          "finishCode"
+        ]
+      },
+      "HistoryPoint": {
+        "type": "object",
+        "description": "One point of a card's price history.",
+        "properties": {
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "priceUsd": {
+            "type": "number",
+            "description": "PSA 10 reference price in USD.",
+            "nullable": true
+          },
+          "priceStatus": {
+            "type": "string"
+          },
+          "trackedSalesValueUsd": {
+            "type": "number",
+            "nullable": true
+          },
+          "trackedSalesCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "salesCoverage": {
+            "type": "string",
+            "description": "partial or unavailable (observed)."
+          },
+          "salesVerifiedZero": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "at",
+          "priceUsd",
+          "priceStatus",
+          "trackedSalesValueUsd",
+          "trackedSalesCount",
+          "salesCoverage",
+          "salesVerifiedZero"
+        ]
+      },
+      "Card": {
+        "type": "object",
+        "description": "A ranked PSA 10 card. All money is USD.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable public card id (also the /card/{id} page segment)."
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Position in this response's ordering."
+          },
+          "marketRank": {
+            "type": "integer",
+            "description": "Rank by market cap across the whole index."
+          },
+          "viewRank": {
+            "type": "integer",
+            "description": "Rank inside the requested scope."
+          },
+          "previousMarketRank": {
+            "type": "integer",
+            "description": "Market rank in the previous snapshot.",
+            "nullable": true
+          },
+          "tcg": {
+            "type": "string",
+            "description": "\"Pokémon\" or \"One Piece\"."
+          },
+          "cardLanguage": {
+            "type": "string",
+            "description": "Printing language: en, ja, ko, zhCN or zhTW."
+          },
+          "printingIdentity": {
+            "$ref": "#/components/schemas/PrintingIdentity"
+          },
+          "collectorNumber": {
+            "type": "string"
+          },
+          "officialName": {
+            "type": "string",
+            "description": "Canonical printing name."
+          },
+          "name": {
+            "type": "object",
+            "description": "Text keyed by language code. Observed keys: en, ja, ko, zh-CN, zh-TW for cards; only en and ja for boxes.",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "English text."
+              }
+            },
+            "required": [
+              "en"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "setName": {
+            "type": "object",
+            "description": "Text keyed by language code. Observed keys: en, ja, ko, zh-CN, zh-TW for cards; only en and ja for boxes.",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "English text."
+              }
+            },
+            "required": [
+              "en"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "story": {
+            "type": "object",
+            "description": "Card detail only: editorial story text keyed by language code.",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "English text."
+              }
+            },
+            "required": [
+              "en"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "image": {
+            "$ref": "#/components/schemas/CardImage"
+          },
+          "pricePsa10": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "priceUngradedReference": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Metric"
+              }
+            ],
+            "nullable": true,
+            "description": "Card detail only: ungraded reference price."
+          },
+          "populationPsa10": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "marketCap": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "windows": {
+            "type": "object",
+            "description": "Change figures keyed by window: 1d, 7d, 30d, 90d, 180d, 365d.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Window"
+            }
+          },
+          "historyDaily": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryPoint"
+            },
+            "description": "Daily history. Empty in /market responses; filled by /cards/{id}."
+          },
+          "historyReference": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryPoint"
+            },
+            "description": "Longer reference history. Empty in /market responses; filled by /cards/{id}."
+          },
+          "salesSparkline": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Recent daily tracked-sales values for a sparkline."
+          }
+        },
+        "required": [
+          "id",
+          "rank",
+          "marketRank",
+          "viewRank",
+          "tcg",
+          "cardLanguage",
+          "printingIdentity",
+          "collectorNumber",
+          "officialName",
+          "name",
+          "setName",
+          "image",
+          "pricePsa10",
+          "populationPsa10",
+          "marketCap",
+          "windows",
+          "historyDaily",
+          "historyReference",
+          "salesSparkline"
+        ]
+      },
+      "Market": {
+        "type": "object",
+        "description": "A page of the PSA 10 market cap ranking for one scope.",
+        "properties": {
+          "generation": {
+            "$ref": "#/components/schemas/Generation"
+          },
+          "generatedAt": {
+            "type": "string",
+            "description": "When the snapshot was built.",
+            "format": "date-time"
+          },
+          "effectiveAt": {
+            "type": "string",
+            "description": "The date the figures represent; quote it with any figure.",
+            "format": "date-time"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of cards in this page."
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            }
+          }
+        },
+        "required": [
+          "generation",
+          "generatedAt",
+          "effectiveAt",
+          "coverage",
+          "count",
+          "cards"
+        ]
+      },
+      "SearchHit": {
+        "type": "object",
+        "description": "A search hit. Box hits carry no pricePsa10, populationPsa10, marketCap or aliases.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Card id (cmc_...) or box id."
+          },
+          "kind": {
+            "type": "string",
+            "description": "\"card\" or \"box\"."
+          },
+          "match": {
+            "type": "string",
+            "description": "How the query matched, e.g. contains, number-exact."
+          },
+          "url": {
+            "type": "string",
+            "description": "Absolute page URL."
+          },
+          "href": {
+            "type": "string",
+            "description": "Site-relative page path."
+          },
+          "officialName": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object",
+            "description": "Text keyed by language code. Observed keys: en, ja, ko, zh-CN, zh-TW for cards; only en and ja for boxes.",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "English text."
+              }
+            },
+            "required": [
+              "en"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "collectorNumber": {
+            "type": "string"
+          },
+          "setName": {
+            "type": "object",
+            "description": "Text keyed by language code. Observed keys: en, ja, ko, zh-CN, zh-TW for cards; only en and ja for boxes.",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "English text."
+              }
+            },
+            "required": [
+              "en"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "setCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "tcg": {
+            "type": "string"
+          },
+          "cardLanguage": {
+            "type": "string"
+          },
+          "marketRank": {
+            "type": "integer"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Absolute image URL."
+              },
+              "alt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "alt"
+            ]
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Known nicknames (present on some cards)."
+          },
+          "pricePsa10": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "populationPsa10": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "marketCap": {
+            "$ref": "#/components/schemas/Metric"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "match",
+          "url",
+          "href",
+          "officialName",
+          "name",
+          "collectorNumber",
+          "setName",
+          "setCode",
+          "tcg",
+          "cardLanguage",
+          "marketRank",
+          "image"
+        ]
+      },
+      "SearchResult": {
+        "type": "object",
+        "description": "Search results for a name, nickname or collector number.",
+        "properties": {
+          "generation": {
+            "$ref": "#/components/schemas/Generation"
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "effectiveAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "query": {
+            "type": "string",
+            "description": "The query as received."
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language searched."
+          },
+          "kind": {
+            "type": "string",
+            "description": "Kind filter applied: all, card or box."
+          },
+          "tcg": {
+            "type": "string",
+            "description": "TCG filter applied: all, or a TCG name such as \"One Piece\"."
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total matches."
+          },
+          "citation": {
+            "type": "string",
+            "description": "Attribution line to quote."
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of hits returned."
+          },
+          "hits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchHit"
+            }
+          }
+        },
+        "required": [
+          "generation",
+          "generatedAt",
+          "effectiveAt",
+          "query",
+          "lang",
+          "kind",
+          "tcg",
+          "total",
+          "count",
+          "citation",
+          "hits"
+        ]
+      },
+      "Resolution": {
+        "type": "object",
+        "description": "The result of resolving a query to one card.",
+        "properties": {
+          "generation": {
+            "$ref": "#/components/schemas/Generation"
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "effectiveAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "query": {
+            "type": "string",
+            "description": "The query as received."
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language searched."
+          },
+          "kind": {
+            "type": "string",
+            "description": "Kind filter applied: all, card or box."
+          },
+          "tcg": {
+            "type": "string",
+            "description": "TCG filter applied: all, or a TCG name such as \"One Piece\"."
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total matches."
+          },
+          "citation": {
+            "type": "string",
+            "description": "Attribution line to quote."
+          },
+          "ambiguous": {
+            "type": "boolean",
+            "description": "True when no single hit is uniquely strong."
+          },
+          "resolved": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchHit"
+              }
+            ],
+            "nullable": true,
+            "description": "The single resolved hit, or null when ambiguous."
+          },
+          "hits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchHit"
+            },
+            "description": "Candidate hits (a short list)."
+          }
+        },
+        "required": [
+          "generation",
+          "generatedAt",
+          "effectiveAt",
+          "query",
+          "lang",
+          "kind",
+          "tcg",
+          "total",
+          "ambiguous",
+          "citation",
+          "resolved",
+          "hits"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "description": "Error body (400 for invalid parameters, 404 for an unknown card).",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      }
+    }
+  }
+}
